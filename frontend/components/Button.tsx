@@ -4,17 +4,17 @@ import React from "react";
 
 interface ButtonProps {
   children: React.ReactNode;
-  // onClick?: () => void;
+  onClick?: () => void;
   className: string;
 }
 
-const Button = ({ children, className }: ButtonProps) => {
+const Button = ({ children, className, onClick }: ButtonProps) => {
   return (
-    <div>
-      <button onClick={() => console.log("clicked")} className={className}>
+    // <div className="w-full flex justify-center">
+      <button onClick={onClick} className={className}>
         {children}
       </button>
-    </div>
+    // </div>
   );
 };
 

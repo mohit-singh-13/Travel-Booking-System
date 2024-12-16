@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 export const dbConnect = () => {
   mongoose
-    .connect("", {
+    .connect(process.env.DB_URL || "", {
       family: 4,
     })
     .then((res) => console.log("DB connected successfully"))

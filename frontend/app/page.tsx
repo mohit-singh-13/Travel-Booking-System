@@ -1,32 +1,25 @@
-import TourCard from "@/components/TourCard";
+"use client";
+
+import Button from "@/components/Button";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+
   return (
-    <div>
-      <TourCard
-        title="Tropical Paradise Gateway Not"
-        description="My name is Mohit Singh. I'm pursuing B.Tech. from Maharaja Surajmal Institute of Technolgy"
-        price="345"
-        image="/superman.jpg"
-      />
-      <TourCard
-        title="Mohit Singh"
-        description="My name is Mohit Singh. I'm pursuing B.Tech. from Maharaja Surajmal Institute of Technolgy"
-        price="345"
-        image="/ironman.jpg"
-      />
-      <TourCard
-        title="Mohit Singh"
-        description="My name is Mohit Singh. I'm pursuing B.Tech. from Maharaja Surajmal Institute of Technolgy"
-        price="345"
-        image="/gokuVegita.jpg"
-      />
-      <TourCard
-        title="Mohit Singh"
-        description="My name is Mohit Singh. I'm pursuing B.Tech. from Maharaja Surajmal Institute of Technolgy"
-        price="345"
-        image="/deadpool.jpg"
-      />
+    <div className="h-screen w-full flex justify-center items-center flex-col gap-8">
+      <h1 className="w-[90%] text-5xl sm:text-7xl text-center leading-[3.5rem]">
+        Welcome to{" "}
+        <span className="font-bold text-gray-700">TravelByHeart</span>
+      </h1>
+      <Button
+        className="w-[70%] rounded-xl text-3xl px-4 py-10 bg-black text-white"
+        onClick={() => {
+          router.push("/packages");
+        }}
+      >
+        Click Here to Explore
+      </Button>
     </div>
   );
 }
