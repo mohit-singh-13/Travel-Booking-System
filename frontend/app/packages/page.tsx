@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Loading from "./loading";
 import axios from "axios";
 import TourCard from "@/components/TourCard";
+import Button from "@/components/Button";
+import { useRouter } from "next/navigation";
 
 // import TourCard from "@/components/TourCard";
 
@@ -25,7 +27,6 @@ const AllTours = () => {
     const URL = process.env.NEXT_PUBLIC_BE_URL + "/api/v1/packages" || "";
     const { data }: { data: { packages: []; success: boolean } } =
       await axios.get(URL);
-    // console.log(data);
 
     setPackages(data.packages);
     setLoading(false);
@@ -35,13 +36,18 @@ const AllTours = () => {
     fetchPackages();
   }, []);
 
+  const router = useRouter();
+
   if (loading) return <Loading />;
 
   return (
     <div className="bg-slate-100 px-12 py-8">
-      <h2 className="font-bold text-4xl">Tour Packages</h2>
+      <div className="flex items-center justify-between">
+      <h2 className="font-bold text-5xl">Tour Packages</h2>
+      <Button className="text-white bg-black px-4 py-4 rounded-lg" onClick={() => router.push("/admin/packages")}>Admin Panel</Button>
+      </div>
 
-      <div className="grid grid-cols-3 gap-5 py-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 py-12">
         {packages.map((pkg, ind) => (
           <TourCard
             key={ind}

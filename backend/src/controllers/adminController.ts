@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import Packages from "../models/PackagesModel";
+import Bookings from "../models/BookingModel";
 
 interface PackageProps {
   title: string;
@@ -70,6 +71,18 @@ export const deletePackage = async (req: Request, res: Response) => {
       success: true,
       message: "Package has been deleted successfully",
     });
+    return;
+  } catch (err) {
+    res.status(404).json({ success: false, message: "Package not found" });
+    return;
+  }
+};
+
+export const getAllBookings = async (req: Request, res: Response) => {
+  try {
+    const result = await Bookings.find({});
+
+    res.status(200).json({ success: true, result });
     return;
   } catch (err) {
     res.status(404).json({ success: false, message: "Package not found" });

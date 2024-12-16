@@ -60,6 +60,8 @@ export const bookTour = async (req: Request, res: Response) => {
       dateOfBooking,
     }: BookTourProps = req.body;
 
+    console.log(req.body)
+
     if (
       !name ||
       !email ||
