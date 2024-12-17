@@ -1,5 +1,3 @@
-// "use client";
-
 import Image from "next/image";
 import Button from "./Button";
 import { FaIndianRupeeSign } from "react-icons/fa6";
@@ -15,7 +13,6 @@ interface TourCardProps {
 }
 
 const TourCard = ({ id, title, description, price, image }: TourCardProps) => {
-  // console.log(image);
   const router = useRouter();
 
   return (

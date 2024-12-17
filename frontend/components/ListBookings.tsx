@@ -1,6 +1,3 @@
-// import { LiaRupeeSignSolid } from "react-icons/lia";
-// import Button from "./Button";
-// import axios from "axios";
 import { useEffect, useState } from "react";
 
 interface BookingsProps {

@@ -16,10 +16,8 @@ export const getAllPackages = async (req: Request, res: Response) => {
 export const getPackage = async (req: Request, res: Response) => {
   try {
     const { id } = req.params as { id: string };
-    console.log(id);
 
     const result = await Packages.findById(id);
-    console.log(result);
 
     if (!result) {
       return;
@@ -59,8 +57,6 @@ export const bookTour = async (req: Request, res: Response) => {
       numberOfTravelers,
       dateOfBooking,
     }: BookTourProps = req.body;
-
-    console.log(req.body)
 
     if (
       !name ||

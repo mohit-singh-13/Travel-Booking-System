@@ -6,7 +6,7 @@ interface PackageProps {
   title: string;
   description: string;
   price: string;
-  dates: Date[];
+  dates: string;
   image: string;
 }
 
@@ -16,13 +16,14 @@ export const addPackage = async (req: Request, res: Response) => {
 
     if (!title || !description || !price || !dates || !image) {
       res.status(422).json({ success: false, message: "Invalid inputs" });
+      return;
     }
 
     await Packages.create({
       title,
       description,
       price,
-      dates,
+      dates: dates.split(","),
       image,
     });
 
@@ -31,7 +32,7 @@ export const addPackage = async (req: Request, res: Response) => {
       .json({ success: true, message: "Package added successfully" });
     return;
   } catch (err) {
-    res.status(500).json({ success: false, message: "Internal server error" });
+    res.status(422).json({ success: false, message: "Invalid inputs" });
     return;
   }
 };

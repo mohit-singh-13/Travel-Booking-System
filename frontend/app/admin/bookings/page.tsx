@@ -1,17 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-// import { useRouter } from "next/navigation";
 import axios from "axios";
 import ListBookings from "@/components/ListBookings";
-
-// "_id": "675eb7ffb43b156bded2e11e",
-// "name": "Mohit Singh",
-// "email": "ms@gmail.com",
-// "phoneNumber": "12345",
-// "numberOfTravelers": 5,
-// "dateOfBooking": "2003-09-23T18:30:00.000Z",
-// "__v": 0
 
 interface BookingsProps {
   name: string;
@@ -29,14 +20,11 @@ const Page = () => {
       await axios.get(`${URL}/api/v1/admin/bookings`);
 
     setBookings(response.data.result);
-    console.log(response.data.result);
   };
 
   useEffect(() => {
     fetchBookings();
   }, []);
-
-  // const router = useRouter();
 
   return (
     <div className="w-full">

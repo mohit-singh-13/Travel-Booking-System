@@ -24,7 +24,6 @@ const Page = () => {
       await axios.get(`${URL}/api/v1/admin`);
 
     setPackages(response.data.packages);
-    console.log(response.data.packages);
   };
 
   useEffect(() => {

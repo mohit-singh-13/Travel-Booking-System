@@ -11,7 +11,7 @@ const Sidebar = ({ href, title }: { href: string; title: string }) => {
     <div
       className={`${
         selected ? "bg-[#000000] text-white" : "text-slate-500"
-      } cursor-pointer my-2 rounded-sm py-1`}
+      } cursor-pointer my-2 rounded-md py-1`}
       onClick={() => router.push(href)}
     >
       {title}

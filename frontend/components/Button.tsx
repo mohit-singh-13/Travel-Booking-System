@@ -10,11 +10,9 @@ interface ButtonProps {
 
 const Button = ({ children, className, onClick }: ButtonProps) => {
   return (
-    // <div className="w-full flex justify-center">
-      <button onClick={onClick} className={className}>
-        {children}
-      </button>
-    // </div>
+    <button onClick={onClick} className={className}>
+      {children}
+    </button>
   );
 };
 

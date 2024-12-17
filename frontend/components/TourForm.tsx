@@ -26,14 +26,11 @@ const TourForm = ({
   });
 
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e);
     setBookingData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
-
-  // const [confirmation, setConfirmation] = useState<string>("");
 
   const handlerClick = async () => {
     const URL = process.env.NEXT_PUBLIC_BE_URL;
