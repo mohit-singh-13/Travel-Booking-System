@@ -39,7 +39,7 @@ const AllTours = () => {
   if (loading) return <Loading />;
 
   return (
-    <div className="bg-slate-100 px-12 py-8">
+    <div className="bg-slate-100 px-12 py-8 min-h-screen">
       <div className="flex items-center justify-between">
         <h2 className="font-bold text-5xl">Tour Packages</h2>
         <Button
@@ -49,19 +49,24 @@ const AllTours = () => {
           Admin Panel
         </Button>
       </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 py-12">
-        {packages.map((pkg, ind) => (
-          <TourCard
-            key={ind}
-            id={pkg._id}
-            title={pkg.title}
-            description={pkg.description}
-            price={pkg.price}
-            image={pkg.image}
-          />
-        ))}
-      </div>
+      {packages.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 py-12">
+          {packages.map((pkg, ind) => (
+            <TourCard
+              key={ind}
+              id={pkg._id}
+              title={pkg.title}
+              description={pkg.description}
+              price={pkg.price}
+              image={pkg.image}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="text-center pt-24 font-bold text-xl">
+          No Packages Yet
+        </div>
+      )}
     </div>
   );
 };

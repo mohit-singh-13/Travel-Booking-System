@@ -27,30 +27,38 @@ const ListPackages = ({ packages }: { packages: PackageProps[] }) => {
 
   return (
     <div>
-      <div className="grid grid-cols-3 font-bold text-gray-700">
-        <p>Title</p>
-        <p>Price</p>
-        <p>Actions</p>
-      </div>
-      <div className="flex flex-col gap-4">
-        {myPkg.map((element, index) => (
-          <div
-            key={index}
-            className="grid grid-cols-3 border-t-2 pt-2 mt-2"
-          >
-            <p>{element.title}</p>
-            <p className="flex items-center gap-1">
-              <LiaRupeeSignSolid /> {element.price}
-            </p>
-            <Button
-              className="bg-red-500 px-4 py-2 rounded-lg text-white font-semibold w-20"
-              onClick={() => deleteHandler(element._id)}
-            >
-              Delete
-            </Button>
+      {myPkg.length > 0 ? (
+        <div>
+          <div className="grid grid-cols-3 font-bold text-gray-700">
+            <p>Title</p>
+            <p>Price</p>
+            <p>Actions</p>
           </div>
-        ))}
-      </div>
+          <div className="flex flex-col gap-4">
+            {myPkg.map((element, index) => (
+              <div
+                key={index}
+                className="grid grid-cols-3 border-t-2 pt-2 mt-2"
+              >
+                <p>{element.title}</p>
+                <p className="flex items-center gap-1">
+                  <LiaRupeeSignSolid /> {element.price}
+                </p>
+                <Button
+                  className="bg-red-500 px-4 py-2 rounded-lg text-white font-semibold w-20"
+                  onClick={() => deleteHandler(element._id)}
+                >
+                  Delete
+                </Button>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="text-center pt-24 font-bold text-xl">
+          No Packages Yet
+        </div>
+      )}
     </div>
   );
 };
