@@ -69,7 +69,7 @@ export const bookTour = async (req: Request, res: Response) => {
       return;
     }
 
-    await Bookings.create({
+    const result = await Bookings.create({
       name,
       email,
       phoneNumber,
@@ -79,7 +79,11 @@ export const bookTour = async (req: Request, res: Response) => {
 
     res
       .status(200)
-      .json({ success: true, message: "Tour has been booked successfully" });
+      .json({
+        success: true,
+        message: "Tour has been booked successfully",
+        result,
+      });
   } catch (err) {
     res.status(500).json({ success: false, message: "Internal server error" });
     return;

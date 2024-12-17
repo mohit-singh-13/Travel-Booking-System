@@ -3,6 +3,7 @@ import Button from "./Button";
 import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import jsPDF from "jspdf";
 
 interface BookingDataProps {
   name: string;
@@ -32,11 +33,34 @@ const TourForm = ({
     }));
   };
 
+  const generatePDF = ({
+    name,
+    email,
+    phoneNumber,
+    numberOfTravelers,
+    dateOfBooking,
+  }: BookingDataProps) => {
+    const doc = new jsPDF();
+    doc.setFontSize(25);
+    doc.text("Invoice", 90, 20);
+
+    doc.line(30, 30, 185, 30);
+    doc.setFontSize(18);
+    doc.text(`Name: ${name}`, 60, 50);
+    doc.text(`Email: ${email}`, 60, 60);
+    doc.text(`Phone: ${phoneNumber}`, 60, 70);
+    doc.text(`No. of Travelers: ${numberOfTravelers}`, 60, 80);
+    doc.text(`Date of Tour: ${new Date(dateOfBooking).toDateString()}`, 60, 90);
+
+    doc.save("invoice.pdf");
+  };
+
   const handlerClick = async () => {
     const URL = process.env.NEXT_PUBLIC_BE_URL;
     try {
-      const response: { data: { success: boolean; message: string } } =
-        await axios.post(`${URL}/api/v1/packages/createBooking`, bookingData);
+      const response: {
+        data: { success: boolean; message: string; result: BookingDataProps };
+      } = await axios.post(`${URL}/api/v1/packages/createBooking`, bookingData);
 
       toast.success(response.data.message);
       setBookingData({
@@ -46,6 +70,8 @@ const TourForm = ({
         numberOfTravelers: "",
         dateOfBooking: "",
       });
+
+      generatePDF(response.data.result);
     } catch (err: any) {
       toast.error(err.response.data.message);
     }
